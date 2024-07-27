@@ -38,9 +38,11 @@ button {
   background-color: var(--accent-color);
   border-radius: 2rem;
 
-  input {
+  input,
+  input::placeholder {
     all: unset;
     font-size: var(--text-small);
+    color: var(--secondary-color);
     flex: 1;
   }
 }

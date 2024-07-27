@@ -33,7 +33,7 @@
     }
 
     .weather-data-item {
-      & > span {
+      .name {
         font-size: var(--text-small);
         color: var(--secondary-color);
       }
