@@ -31,11 +31,15 @@ app-hourly-forecast {
 .container {
   flex: 1;
   display: grid;
+  gap: 2rem;
+
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
 
   grid-template-areas:
-    'now now now data data'
-    'now now now data data'
-    'now now now data data'
-    'weekly weekly weekly hourly hourly'
-    'weekly weekly weekly hourly hourly';
+    "now now now data data"
+    "now now now data data"
+    "now now now data data"
+    "weekly weekly weekly hourly hourly"
+    "weekly weekly weekly hourly hourly";
 }
