@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+
+:root {
+  --action-color: #3D405B;
+  --primary-color-light: #FFFFFF;
+  --primary-color-dark: #535353;
+  --secondary-color: #626262;
+
+  --accent-color: #ECE9D4;
+  --backgorund-light: #F4F1DE;
+  --background-dark: #D4D1BE;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-dark);
+}
