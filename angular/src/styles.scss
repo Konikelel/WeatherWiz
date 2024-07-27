@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 
 :root {
   --action-color: #3D405B;
@@ -11,6 +11,14 @@
   --accent-color: #ECE9D4;
   --backgorund-light: #F4F1DE;
   --background-dark: #D4D1BE;
+
+  --text-large: 1.5rem;
+  --text-medium: 1.25rem;
+  --text-small: 1rem;
+
+  --icon-size-large: 2.25rem;
+  --icon-size-medium: 2rem;
+  --icon-size-small: 1.5rem;
 }
 
 * {
