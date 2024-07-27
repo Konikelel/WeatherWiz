@@ -12,7 +12,7 @@
   background-color: var(--backgorund-light);
 }
 
-app-weather-now{
+app-weather-now {
   grid-area: now;
 }
 
@@ -21,11 +21,11 @@ app-weather-data {
 }
 
 app-weekly-forecast {
-  grid-area: forecast-w;
+  grid-area: weekly;
 }
 
 app-hourly-forecast {
-  grid-area: forecast-h;
+  grid-area: hourly;
 }
 
 .container {
@@ -36,6 +36,6 @@ app-hourly-forecast {
     'now now now data data'
     'now now now data data'
     'now now now data data'
-    'forecast-w forecast-w forecast-w forecast-h forecast-h'
-    'forecast-w forecast-w forecast-w forecast-h forecast-h';
+    'weekly weekly weekly hourly hourly'
+    'weekly weekly weekly hourly hourly';
 }

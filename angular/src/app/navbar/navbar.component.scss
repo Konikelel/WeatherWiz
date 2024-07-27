@@ -6,14 +6,10 @@ nav {
   align-content: center;
 }
 
-div, button {
+div,
+button {
   display: flex;
   align-items: center;
-}
-
-span {
-  font-size: var(--icon-size-small);
-  color: var(--primary-color-dark);
 }
 
 .header {
@@ -21,7 +17,7 @@ span {
 
   h1 {
     font-size: var(--text-large);
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     font-weight: 900;
   }
 
@@ -61,7 +57,8 @@ span {
   background-color: var(--action-color);
   border-radius: 2rem;
 
-  p, span {
+  p,
+  span {
     color: var(--primary-color-light);
   }
 
