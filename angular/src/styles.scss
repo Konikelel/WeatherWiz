@@ -17,7 +17,7 @@
   --text-small: 1rem;
 
   --icon-size-large: 2.75rem;
-  --icon-size-medium: 2rem;
+  --icon-size-medium: 2.5rem;
   --icon-size-small: 1.5rem;
 }
 
@@ -28,7 +28,7 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -41,4 +41,79 @@ body {
 .material-symbols-outlined {
   font-size: var(--icon-size-small);
   color: var(--primary-color-dark);
+}
+
+.container-title {
+  font-size: var(--text-medium);
+  font-weight: 400;
+  color: var(--secondary-color);
+}
+
+//STYLE BOTH FORECAST
+.forecast {
+  padding-bottom: 1rem;
+}
+
+.forecast-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: min-content;
+  grid-auto-columns: 20%;
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.snap-inline {
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: 1rem;
+}
+
+.snap-inline > * {
+  scroll-snap-align: start;
+}
+
+.weather-forecast-item {
+  margin: 0 10%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+  background-color: var(--accent-color);
+  border-radius: 1rem;
+
+  span {
+    color: var(--primary-color-dark);
+    font-size: var(--text-small);
+  }
+
+  .temperature {
+    font-size: calc(var(--text-small) + 0.1rem);
+    font-weight: 500;
+  }
+
+  img {
+    width: var(--icon-size-medium);
+  }
+}
+
+::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--backgorund-light);
+  border: 0.1rem solid var(--background-dark);
 }

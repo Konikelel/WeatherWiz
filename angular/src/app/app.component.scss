@@ -5,7 +5,6 @@
   gap: 4rem;
 
   width: 80%;
-  height: 90vh;
 
   padding: 2rem 5rem;
   border-radius: 2rem;
@@ -31,15 +30,16 @@ app-hourly-forecast {
 .container {
   flex: 1;
   display: grid;
-  gap: 2rem;
+  align-items: center;
+  gap: 2rem 3rem;
 
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
 
   grid-template-areas:
-    "now now now data data"
-    "now now now data data"
-    "now now now data data"
-    "weekly weekly weekly hourly hourly"
-    "weekly weekly weekly hourly hourly";
+    "now now data data"
+    "now now data data"
+    "now now data data"
+    "weekly weekly hourly hourly"
+    "weekly weekly hourly hourly";
 }

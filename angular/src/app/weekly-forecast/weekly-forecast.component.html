@@ -1,1 +1,10 @@
-<p>weekly-forecast works!</p>
+<h3 class="container-title forecast">Weekly Forecast</h3>
+<div class="forecast-container snap-inline">
+  @for (number of numbers; track number) {
+    <div class="weather-forecast-item">
+      <span class="day">Monday</span>
+      <img src="assets/02d.png" alt="weather" />
+      <span class="temperature">{{ number }} °C</span>
+    </div>
+  }
+</div>

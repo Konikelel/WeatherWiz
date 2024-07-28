@@ -14,12 +14,6 @@
   border-radius: 1rem;
   background-color: var(--accent-color);
 
-  h3 {
-    font-size: var(--text-medium);
-    font-weight: 400;
-    color: var(--secondary-color);
-  }
-
   .weather-data-box {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
