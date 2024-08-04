@@ -6,8 +6,9 @@
 
 .weather-now-data {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
 
   img {
     width: 12rem;
@@ -54,6 +55,65 @@
 
   .data {
     flex-grow: 1;
-    font-size: var(--text-small);
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 1570px) {
+  .weather-now-data {
+    .temperature {
+      font-size: 5rem !important;
+    }
+
+    img {
+      width: 8rem;
+    }
+  }
+  .weather-now-datelocation {
+    .data {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .weather-now-data {
+    .temperature {
+      font-size: 4rem !important;
+    }
+
+    span {
+      font-size: 2rem !important;
+    }
+
+    img {
+      width: 6rem;
+    }
+  }
+  .weather-now-datelocation {
+    .data {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 770px) {
+  .weather-now-data {
+    .temperature {
+      font-size: 5rem !important;
+    }
+
+    span {
+      font-size: 2rem !important;
+    }
+
+    img {
+      width: 8rem;
+    }
+  }
+  .weather-now-datelocation {
+    .data {
+      font-size: 1rem;
+    }
   }
 }
