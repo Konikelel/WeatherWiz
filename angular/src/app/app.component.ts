@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {NavbarComponent} from "./navbar/navbar.component";
-import {WeeklyForecastComponent} from "./weekly-forecast/weekly-forecast.component";
-import {HourlyForecastComponent} from "./hourly-forecast/hourly-forecast.component";
-import {WeatherDataComponent} from "./weather-data/weather-data.component";
-import {WeatherNowComponent} from "./weather-now/weather-now.component";
+import {NavbarComponent} from "./components/navbar/navbar.component";
+import {WeeklyForecastComponent} from "./components/weekly-forecast/weekly-forecast.component";
+import {HourlyForecastComponent} from "./components/hourly-forecast/hourly-forecast.component";
+import {WeatherDataComponent} from "./components/weather-data/weather-data.component";
+import {WeatherNowComponent} from "./components/weather-now/weather-now.component";
 
 @Component({
   selector: 'app-root',
