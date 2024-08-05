@@ -59,7 +59,7 @@
   }
 }
 
-@media (max-width: 1570px) {
+@media (max-width: 1580px) {
   .weather-now-data {
     .temperature {
       font-size: 5rem !important;
@@ -76,7 +76,7 @@
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 870px) {
   .weather-now-data {
     .temperature {
       font-size: 4rem !important;
@@ -115,5 +115,11 @@
     .data {
       font-size: 1rem;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .weather-now-data {
+    flex-direction: column;
   }
 }

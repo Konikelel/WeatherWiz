@@ -44,3 +44,11 @@
     }
   }
 }
+
+@media (max-width: 400px) {
+  .data-container {
+    .weather-data-box {
+      grid-template-columns: 1fr;
+    }
+  }
+}

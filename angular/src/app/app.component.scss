@@ -21,10 +21,12 @@ app-weather-data {
 
 app-weekly-forecast {
   grid-area: weekly;
+  overflow: hidden;
 }
 
 app-hourly-forecast {
   grid-area: hourly;
+  overflow: hidden;
 }
 
 .container {
@@ -50,7 +52,7 @@ app-hourly-forecast {
   }
 }
 
-@media (max-width: 1060px) {
+@media (max-width: 1080px) {
   :host {
     width: 100%;
     border-radius: 0;
@@ -60,7 +62,9 @@ app-hourly-forecast {
 
 @media (max-width: 770px) {
   .container {
+    gap: 3rem 0;
     grid-template-columns: 1fr;
+    grid-template-rows: min-content;
     grid-template-areas:
       "now"
       "hourly"
