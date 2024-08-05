@@ -20,7 +20,7 @@ async def fetchCurrentWeather(city: str):
 
         return WeatherCurrent(
             desc=WeatherDesc(
-                weather=data["weather"][0]["main"],
+                name=data["weather"][0]["main"],
                 description=data["weather"][0]["description"],
                 icon=data["weather"][0]["icon"],
             ),
@@ -61,7 +61,7 @@ async def fetchForecast(city: str, interval: Literal["days", "hours"]):
             WeatherForecast(
                 time=data["dt"],
                 desc=WeatherDesc(
-                    weather=data["weather"][0]["main"],
+                    name=data["weather"][0]["main"],
                     description=data["weather"][0]["description"],
                     icon=data["weather"][0]["icon"],
                 ),
