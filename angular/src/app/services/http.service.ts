@@ -14,8 +14,9 @@ export class HttpService {
     }
 
     return {
-      ...response,
       object,
+      ok: response.ok,
+      status: response.status,
     };
   }
 }

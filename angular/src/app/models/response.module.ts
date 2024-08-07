@@ -1,3 +1,5 @@
-export default interface IResponse<Type> extends Response {
+export default interface IResponse<Type> {
   object: Type;
+  ok: boolean;
+  status: number;
 }

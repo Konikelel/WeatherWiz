@@ -20,7 +20,7 @@ export class WeatherService {
 
   async fetchCurrentWeather(city: string) {
     const response = await this._httpService.get<IWeatherCurrent>(
-      '${this.apiUrl}/weather/current?city=${city}',
+      `${this.apiUrl}/weather/current?city=${city}`,
     );
 
     if (response.ok) {
@@ -30,7 +30,7 @@ export class WeatherService {
 
   async fetchForecastWeather(city: string, interval: IntervalType) {
     const response = await this._httpService.get<IWeatherForecast>(
-      '${this.apiUrl}/weather/forecast?city=${city}&interval=${interval}',
+      `${this.apiUrl}/weather/forecast?city=${city}&interval=${interval}`,
     );
 
     if (response.ok) {
@@ -40,7 +40,7 @@ export class WeatherService {
 
   async fetchPollution(city: string) {
     const response = await this._httpService.get<IAirPollution>(
-      '${this.apiUrl}/pollution?city=${city}',
+      `${this.apiUrl}/pollution?city=${city}`,
     );
 
     if (response.ok) {
