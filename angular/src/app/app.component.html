@@ -1,7 +1,7 @@
-<app-navbar/>
+<app-navbar [(city)]="city" />
 <div class="container">
-  <app-weather-now/>
-  <app-weather-data/>
-  <app-weekly-forecast/>
-  <app-hourly-forecast/>
+  <app-weather-now [city]="city" />
+  <app-weather-data [city]="city" />
+  <app-weekly-forecast [city]="city" />
+  <app-hourly-forecast [city]="city" />
 </div>

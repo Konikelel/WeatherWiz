@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -9,6 +9,8 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './weekly-forecast.component.scss',
 })
 export class WeeklyForecastComponent {
+  city = input.required<string>();
+
   numbers = Array(5)
     .fill(0)
     .map((_, i) => i);

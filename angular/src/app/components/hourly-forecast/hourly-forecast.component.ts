@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-hourly-forecast',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './hourly-forecast.component.scss',
 })
 export class HourlyForecastComponent {
+  city = input.required<string>();
+
   numbers = Array(8)
     .fill(0)
     .map((_, i) => i);
