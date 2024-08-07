@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpService } from './http.service';
 import IWeatherCurrent from '../models/weather-current.module';
 import IWeatherForecast from '../models/weather-forecast.module';
-import AirPollution from '../models/air-pollution.module';
+import IAirPollution from '../models/air-pollution.module';
 
 type IntervalType = 'days' | 'hours';
 
@@ -11,9 +11,9 @@ type IntervalType = 'days' | 'hours';
   providedIn: 'root',
 })
 export class WeatherService {
-  public weatherCurrent: IWeatherCurrent | undefined;
-  public weatherForecast: IWeatherForecast | undefined;
-  public pollution: AirPollution | undefined;
+  public weatherCurrent = signal<IWeatherCurrent | undefined>(undefined);
+  public weatherForecast = signal<IWeatherForecast | undefined>(undefined);
+  public pollution = signal<IAirPollution | undefined>(undefined);
   private apiUrl = environment.apiUrl;
 
   constructor(private _httpService: HttpService) {}
@@ -24,7 +24,7 @@ export class WeatherService {
     );
 
     if (response.ok) {
-      this.weatherCurrent = response.object;
+      this.weatherCurrent.set(response.object);
     }
   }
 
@@ -34,17 +34,17 @@ export class WeatherService {
     );
 
     if (response.ok) {
-      this.weatherForecast = response.object;
+      this.weatherForecast.set(response.object);
     }
   }
 
   async fetchPollution(city: string) {
-    const response = await this._httpService.get<AirPollution>(
+    const response = await this._httpService.get<IAirPollution>(
       '${this.apiUrl}/pollution?city=${city}',
     );
 
     if (response.ok) {
-      this.pollution = response.object;
+      this.pollution.set(response.object);
     }
   }
 }

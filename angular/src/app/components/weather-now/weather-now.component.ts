@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-weather-now',
@@ -9,4 +10,12 @@ import { Component, input } from '@angular/core';
 })
 export class WeatherNowComponent {
   city = input.required<string>();
+
+  weatherCurrent = this.weatherService.currentWeather;
+
+  constructor(private weatherService: WeatherService) {}
+
+  async ngOnInit() {
+    await this.weatherService.fetchCurrentWeather('London');
+  }
 }
