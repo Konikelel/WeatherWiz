@@ -1,13 +1,21 @@
 from dotenv import load_dotenv
 from typing import Annotated, Literal
 import uvicorn
+from os import getenv
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv(override=True)
 
 from api_handler import fetchAirPollution, fetchCurrentWeather, fetchForecast
 
 app = FastAPI()
+origin = getenv("ORIGIN")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[origin],
+    allow_methods=["GET"],
+)
 
 
 @app.get("/")
