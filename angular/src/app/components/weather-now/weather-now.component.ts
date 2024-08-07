@@ -10,12 +10,11 @@ import { WeatherService } from '../../services/weather.service';
 })
 export class WeatherNowComponent {
   city = input.required<string>();
-
-  weatherCurrent = this.weatherService.currentWeather;
+  weatherCurrent = this.weatherService.weatherCurrent.asReadonly();
 
   constructor(private weatherService: WeatherService) {}
 
   async ngOnInit() {
-    await this.weatherService.fetchCurrentWeather('London');
+    await this.weatherService.fetchCurrentWeather(this.city());
   }
 }

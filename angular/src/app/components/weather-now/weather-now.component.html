@@ -1,7 +1,7 @@
 <div class="weather-now-data">
   <div class="weather-status">
-    <span class="temperature">20 °C</span>
-    <span class="description">Cloudy</span>
+    <span class="temperature">{{ weatherCurrent()?.data?.temp }}</span>
+    <span class="description">{{ weatherCurrent()?.desc?.description }}</span>
   </div>
   <img alt="weather" src="assets/02d.png" />
 </div>
@@ -12,6 +12,9 @@
   </div>
   <div class="weather-now-location">
     <span class="material-symbols-outlined icon">location_on</span>
-    <span class="data">London, GB</span>
+    <span class="data"
+      >{{ weatherCurrent()?.location?.city }},
+      {{ weatherCurrent()?.location?.country }}</span
+    >
   </div>
 </div>
