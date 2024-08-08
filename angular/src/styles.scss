@@ -25,6 +25,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  line-height: 1em;
 }
 
 body {
@@ -79,14 +80,23 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 
   padding: 1rem 0;
   background-color: var(--accent-color);
   border-radius: 1rem;
 
+  * {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+
   span {
     color: var(--primary-color-dark);
+  }
+
+  .day {
     font-size: var(--text-small);
   }
 
@@ -95,8 +105,10 @@ body {
     font-weight: 500;
   }
 
-  img {
+  .image {
     width: var(--icon-size-medium);
+    height: var(--icon-size-medium);
+    object-fit: contain;
   }
 }
 

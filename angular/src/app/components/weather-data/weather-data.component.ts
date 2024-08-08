@@ -2,6 +2,7 @@ import {Component, computed, input} from '@angular/core';
 import {WeatherService} from "../../services/weather.service";
 import {PercentPipe, DatePipe} from "@angular/common";
 import { SkeletonComponent } from "../skeleton/skeleton.component";
+import {StyleEnum} from "../../enums/style.enum";
 
 
 @Component({
@@ -21,4 +22,6 @@ export class WeatherDataComponent {
   protected isLoading = computed(() => this.weatherData() == undefined)
 
   constructor(private weatherService: WeatherService) {}
+
+  protected readonly StyleEnum = StyleEnum;
 }

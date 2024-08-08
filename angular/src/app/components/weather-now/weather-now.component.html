@@ -4,14 +4,14 @@
       <span class="temperature">{{ weatherCurrent()!.data!.temp }} °C</span>
       <span class="description">{{ weatherCurrent()!.desc!.description }}</span>
     } @else {
-      <app-skeleton [style]="{width: '10rem', height: '5rem'}"/>
-      <app-skeleton [style]="{width: '12rem', height: '2rem'}"/>
+      <app-skeleton class="temperature" [style]="StyleEnum.TextLarge"/>
+      <app-skeleton class="description" [style]="StyleEnum.TextMedium"/>
     }
   </div>
   @if (!isLoading()) {
-    <img alt="weather" src="assets/02d.png"/>
+    <img class="image" alt="weather" src="assets/02d.png"/>
   } @else {
-    <app-skeleton [style]="{width: '10rem', height: '8rem'}"/>
+    <app-skeleton class="image" [style]="StyleEnum.Image"/>
   }
 </div>
 <div class="weather-now-datelocation">
@@ -20,7 +20,7 @@
     @if (!isLoading()) {
       <span class="data">{{ currentDate | date:'cccc, d MMM' }}</span>
     } @else {
-      <app-skeleton [style]="{width: '10rem', height: '1.5rem'}"/>
+      <app-skeleton class="data" [style]="StyleEnum.TextMedium"/>
     }
   </div>
   <div class="weather-now-location">
@@ -31,7 +31,7 @@
         {{ weatherCurrent()!.location!.country }}</span
       >
     } @else {
-      <app-skeleton [style]="{width: '10rem', height: '1.5rem'}"/>
+      <app-skeleton class="data" [style]="StyleEnum.TextSmall"/>
     }
   </div>
 </div>

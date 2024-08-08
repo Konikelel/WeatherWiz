@@ -9,7 +9,7 @@
         @if (!isLoading()) {
           <span class="value">{{ weatherData()!.data!.humidity }} %</span>
         } @else {
-          <app-skeleton [style]="{width: '5rem', height: '1.92rem'}"/>
+          <app-skeleton class="value" [style]="StyleEnum.TextMedium"/>
         }
       </div>
     </div>
@@ -21,7 +21,7 @@
         @if (!isLoading()) {
           <span class="value">{{ weatherData()!.data!.pressure }} hPa</span>
         } @else {
-          <app-skeleton [style]="{width: '5rem', height: '1.92rem'}"/>
+          <app-skeleton class="value" [style]="StyleEnum.TextMedium"/>
         }
       </div>
     </div>
@@ -33,7 +33,7 @@
         @if (!isLoading()) {
           <span class="value">{{ weatherData()!.data!.visibility }} km</span>
         } @else {
-          <app-skeleton [style]="{width: '5rem', height: '1.92rem'}"/>
+          <app-skeleton class="value" [style]="StyleEnum.TextSmall"/>
         }
       </div>
     </div>
@@ -45,7 +45,7 @@
         @if (!isLoading()) {
           <span class="value">{{ weatherData()!.data!.feels_like }} °C</span>
         } @else {
-          <app-skeleton [style]="{width: '5rem', height: '1.92rem'}"/>
+          <app-skeleton class="value" [style]="StyleEnum.TextSmall"/>
         }
       </div>
     </div>
@@ -60,7 +60,7 @@
       @if (!isLoading()) {
         <span class="value">{{ weatherData()!.location!.sunrise | date:"HH:mm" }}</span>
       } @else {
-        <app-skeleton [style]="{width: '5rem', height: '1.92rem'}"/>
+        <app-skeleton class="value" [style]="StyleEnum.TextMedium"/>
       }
     </div>
 
@@ -69,7 +69,7 @@
       @if (!isLoading()) {
         <span class="value">{{ weatherData()!.location!.sunset | date:"HH:mm"}}</span>
       } @else {
-        <app-skeleton [style]="{width: '5rem', height: '1.92rem'}"/>
+        <app-skeleton class="value" [style]="StyleEnum.TextMedium"/>
       }
     </div>
   </div>

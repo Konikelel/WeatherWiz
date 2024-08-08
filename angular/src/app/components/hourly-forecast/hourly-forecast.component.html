@@ -4,16 +4,16 @@
   @for (weatherForecastItem of weatherForecastHours(); track weatherForecastItem.time) {
     <div class="weather-forecast-item">
       <span class="day">{{ weatherForecastItem.time | date:"HH:mm" }}</span>
-      <img src="../../../assets/02d.png" alt="weather" />
+      <img class="image" src="../../../assets/02d.png" alt="weather" />
       <span class="temperature">{{ weatherForecastItem.data.temp }} °C</span>
     </div>
   }
   } @else {
   @for (number of Array(6); track number) {
     <div class="weather-forecast-item">
-      <app-skeleton [style]="{width: '4rem', height: '1rem'}"/>
-      <app-skeleton [style]="{width: '2rem', height: '2rem'}"/>
-      <app-skeleton [style]="{width: '4rem', height: '1.25rem'}"/>
+      <app-skeleton class="day" [style]="StyleEnum.TextMedium"/>
+      <app-skeleton class="image" [style]="StyleEnum.Image"/>
+      <app-skeleton class="temperature" [style]="StyleEnum.TextSmall"/>
     </div>
   }
 }

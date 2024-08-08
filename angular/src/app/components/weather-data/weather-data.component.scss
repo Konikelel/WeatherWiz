@@ -27,7 +27,9 @@
     }
 
     .weather-data-item {
+
       .name {
+        line-height: 1.75em;
         font-size: var(--text-small);
         color: var(--secondary-color);
       }
@@ -37,6 +39,7 @@
       }
 
       .value {
+        flex-grow: 1;
         font-size: var(--text-large);
         font-weight: 400;
         color: var(--primary-color-dark);

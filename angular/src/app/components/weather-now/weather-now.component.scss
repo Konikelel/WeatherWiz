@@ -10,27 +10,36 @@
   align-items: center;
   gap: 2rem;
 
-  img {
+  .image {
+    height: 12rem;
     width: 12rem;
+    object-fit: contain;
   }
 
   .weather-status {
+    width: 100%;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 0.75rem;
 
     span {
       display: block;
-      font-size: 1.8rem;
-      line-height: 1em;
       font-weight: 800;
       color: var(--action-color);
     }
 
+    .temperature, .description {
+      width: 100%;
+    }
+
     .temperature {
       font-size: 7rem;
+    }
+
+    .description {
+      font-size: 1.8rem;
     }
   }
 }
@@ -67,7 +76,8 @@
       font-size: 5rem !important;
     }
 
-    img {
+    .image {
+      height: 8rem;
       width: 8rem;
     }
   }
@@ -84,11 +94,12 @@
       font-size: 4rem !important;
     }
 
-    span {
+    .description {
       font-size: 1.25rem !important;
     }
 
-    img {
+    .image {
+      height: 6rem;
       width: 6rem;
     }
   }
@@ -105,11 +116,12 @@
       font-size: 5rem !important;
     }
 
-    span {
+    .description {
       font-size: 2rem !important;
     }
 
-    img {
+    .image {
+      height: 8rem;
       width: 8rem;
     }
   }
@@ -123,5 +135,6 @@
 @media (max-width: 500px) {
   .weather-now-data {
     flex-direction: column;
+    text-align: center;
   }
 }

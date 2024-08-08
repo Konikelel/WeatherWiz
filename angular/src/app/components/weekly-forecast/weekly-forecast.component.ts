@@ -2,6 +2,7 @@ import {Component, computed, input, OnInit} from '@angular/core';
 import {WeatherService} from "../../services/weather.service";
 import {DatePipe} from "@angular/common";
 import { SkeletonComponent } from "../skeleton/skeleton.component";
+import {StyleEnum} from "../../enums/style.enum";
 
 @Component({
   selector: 'app-weekly-forecast',
@@ -25,4 +26,5 @@ export class WeeklyForecastComponent implements OnInit {
   }
 
   protected readonly Array = Array;
+  protected readonly StyleEnum = StyleEnum;
 }

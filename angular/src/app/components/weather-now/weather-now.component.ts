@@ -2,6 +2,7 @@ import {Component, computed, input} from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { DatePipe } from "@angular/common";
 import { SkeletonComponent } from "../skeleton/skeleton.component";
+import {StyleEnum} from "../../enums/style.enum";
 
 @Component({
   selector: 'app-weather-now',
@@ -21,4 +22,6 @@ export class WeatherNowComponent {
   protected readonly Math = Math;
 
   constructor(private weatherService: WeatherService) {}
+
+  protected readonly StyleEnum = StyleEnum;
 }
