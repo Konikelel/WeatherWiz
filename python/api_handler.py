@@ -25,10 +25,10 @@ async def fetchCurrentWeather(city: str):
                 icon=data["weather"][0]["icon"],
             ),
             data=WeatherData(
-                temp=data["main"]["temp"],
+                temp=round(data["main"]["temp"]),
                 humidity=data["main"]["humidity"],
                 pressure=data["main"]["pressure"],
-                visibility=data["visibility"],
+                visibility=data["visibility"] / 1000,
                 feels_like=data["main"]["feels_like"],
             ),
             wind=Wind(
@@ -38,8 +38,8 @@ async def fetchCurrentWeather(city: str):
             location=Location(
                 city=data["name"],
                 country=data["sys"]["country"],
-                sunrise=data["sys"]["sunrise"],
-                sunset=data["sys"]["sunset"],
+                sunrise=data["sys"]["sunrise"] * 1000,
+                sunset=data["sys"]["sunset"] * 1000,
             ),
         )
     except KeyError:
@@ -59,17 +59,17 @@ async def fetchForecast(city: str, interval: Literal["days", "hours"]):
     try:
         return [
             WeatherForecast(
-                time=data["dt"],
+                time=data["dt"] * 1000,
                 desc=WeatherDesc(
                     name=data["weather"][0]["main"],
                     description=data["weather"][0]["description"],
                     icon=data["weather"][0]["icon"],
                 ),
                 data=WeatherData(
-                    temp=data["main"]["temp"],
+                    temp=round(data["main"]["temp"]),
                     humidity=data["main"]["humidity"],
                     pressure=data["main"]["pressure"],
-                    visibility=data["visibility"],
+                    visibility=data["visibility"] / 1000,
                     feels_like=data["main"]["feels_like"],
                 ),
                 wind=Wind(
