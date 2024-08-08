@@ -8,6 +8,6 @@ import { Component, input, output } from '@angular/core';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  city = input.required<string>();
-  cityChange = output<string>();
+  public city = input.required<string>();
+  public cityChange = output<string>();
 }

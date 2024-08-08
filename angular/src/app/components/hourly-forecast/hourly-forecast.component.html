@@ -1,10 +1,10 @@
 <h3 class="container-title forecast">Hourly Forecast</h3>
 <div class="forecast-container snap-inline">
-  @for (number of numbers; track number) {
+  @for (weatherForecastItem of weatherForecastHours(); track weatherForecastItem.time) {
     <div class="weather-forecast-item">
-      <span class="day">Monday</span>
+      <span class="day">{{ weatherForecastItem.time | date:"HH:mm" }}</span>
       <img src="../../../assets/02d.png" alt="weather" />
-      <span class="temperature">{{ number }} °C</span>
+      <span class="temperature">{{ weatherForecastItem.data.temp }} °C</span>
     </div>
   }
 </div>

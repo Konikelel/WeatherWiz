@@ -1,17 +1,25 @@
 import { Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import {WeatherService} from "../../services/weather.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-weekly-forecast',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [
+    NgOptimizedImage,
+    DatePipe
+  ],
   templateUrl: './weekly-forecast.component.html',
   styleUrl: './weekly-forecast.component.scss',
 })
 export class WeeklyForecastComponent {
-  city = input.required<string>();
+  public city = input.required<string>();
+  protected weatherForecastDays = this.weatherService.weatherForecastDays.asReadonly();
 
-  numbers = Array(5)
-    .fill(0)
-    .map((_, i) => i);
+  constructor(private weatherService: WeatherService) {}
+
+  async ngOnInit() {
+    await this.weatherService.fetchForecastWeather(this.city(), "days");
+  }
 }
