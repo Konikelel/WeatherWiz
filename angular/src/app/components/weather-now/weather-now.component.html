@@ -1,20 +1,37 @@
 <div class="weather-now-data">
   <div class="weather-status">
-    <span class="temperature">{{ weatherCurrent()?.data?.temp }} °C</span>
-    <span class="description">{{ weatherCurrent()?.desc?.description }}</span>
+    @if (!isLoading()) {
+      <span class="temperature">{{ weatherCurrent()!.data!.temp }} °C</span>
+      <span class="description">{{ weatherCurrent()!.desc!.description }}</span>
+    } @else {
+      <app-skeleton [style]="{width: '10rem', height: '5rem'}"/>
+      <app-skeleton [style]="{width: '12rem', height: '2rem'}"/>
+    }
   </div>
-  <img alt="weather" src="assets/02d.png" />
+  @if (!isLoading()) {
+    <img alt="weather" src="assets/02d.png"/>
+  } @else {
+    <app-skeleton [style]="{width: '10rem', height: '8rem'}"/>
+  }
 </div>
 <div class="weather-now-datelocation">
   <div class="weather-now-date">
     <span class="material-symbols-outlined icon">calendar_month</span>
-    <span class="data">{{ currentDate | date:'cccc, d MMM' }}</span>
+    @if (!isLoading()) {
+      <span class="data">{{ currentDate | date:'cccc, d MMM' }}</span>
+    } @else {
+      <app-skeleton [style]="{width: '10rem', height: '1.5rem'}"/>
+    }
   </div>
   <div class="weather-now-location">
     <span class="material-symbols-outlined icon">location_on</span>
-    <span class="data"
-      >{{ weatherCurrent()?.location?.city }},
-      {{ weatherCurrent()?.location?.country }}</span
-    >
+    @if (!isLoading()) {
+      <span class="data"
+        >{{ weatherCurrent()!.location!.city }},
+        {{ weatherCurrent()!.location!.country }}</span
+      >
+    } @else {
+      <app-skeleton [style]="{width: '10rem', height: '1.5rem'}"/>
+    }
   </div>
 </div>

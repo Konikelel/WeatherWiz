@@ -5,6 +5,7 @@ import { WeeklyForecastComponent } from './components/weekly-forecast/weekly-for
 import { HourlyForecastComponent } from './components/hourly-forecast/hourly-forecast.component';
 import { WeatherDataComponent } from './components/weather-data/weather-data.component';
 import { WeatherNowComponent } from './components/weather-now/weather-now.component';
+import {WeatherService} from "./services/weather.service";
 
 @Component({
   selector: 'app-root',
@@ -23,4 +24,10 @@ import { WeatherNowComponent } from './components/weather-now/weather-now.compon
 export class AppComponent {
   title = 'weatherWiz';
   public city: string = 'London';
+
+  constructor(private weatherService: WeatherService) {}
+
+  async ngOnInit() {
+    await this.weatherService.fetchCurrentWeather(this.city);
+  }
 }

@@ -1,11 +1,13 @@
-import { Component, input } from '@angular/core';
+import {Component, computed, input} from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
-import {DatePipe} from "@angular/common";
+import { DatePipe } from "@angular/common";
+import { SkeletonComponent } from "../skeleton/skeleton.component";
 
 @Component({
   selector: 'app-weather-now',
   standalone: true,
   imports: [
+    SkeletonComponent,
     DatePipe
   ],
   templateUrl: './weather-now.component.html',
@@ -14,15 +16,9 @@ import {DatePipe} from "@angular/common";
 export class WeatherNowComponent {
   public city = input.required<string>();
   protected weatherCurrent = this.weatherService.weatherCurrent.asReadonly();
+  protected isLoading = computed(() => this.weatherCurrent() == undefined)
+  protected currentDate = Date.now();
   protected readonly Math = Math;
 
   constructor(private weatherService: WeatherService) {}
-
-  async ngOnInit() {
-    await this.weatherService.fetchCurrentWeather(this.city());
-  }
-
-  get currentDate() {
-    return Date.now();
-  }
 }
