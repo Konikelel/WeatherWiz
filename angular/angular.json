@@ -64,7 +64,8 @@
               "buildTarget": "weatherWiz:build:production"
             },
             "development": {
-              "buildTarget": "weatherWiz:build:development"
+              "buildTarget": "weatherWiz:build:development",
+              "port": 8010
             }
           },
           "defaultConfiguration": "development"
