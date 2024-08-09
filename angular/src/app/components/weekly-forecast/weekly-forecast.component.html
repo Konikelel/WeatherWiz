@@ -1,19 +1,22 @@
 <h3 class="container-title forecast">Weekly Forecast</h3>
 <div class="forecast-container snap-inline">
   @if (!isLoading()) {
-    @for (weatherForecastItem of weatherForecastDays(); track weatherForecastItem.time) {
+    @for (
+      weatherForecastItem of weatherForecastDays();
+      track weatherForecastItem.time
+    ) {
       <div class="weather-forecast-item">
-        <span class="day">{{ weatherForecastItem.time | date:"cccc" }}</span>
-        <img class="image" src="assets/02d.png" alt="weather"/>
+        <span class="day">{{ weatherForecastItem.time | date: "cccc" }}</span>
+        <img class="image" src="assets/02d.png" alt="weather" />
         <span class="temperature">{{ weatherForecastItem.data.temp }} °C</span>
       </div>
     }
   } @else {
-    @for (number of Array(6); track number) {
+    @for (number of Array(5); track number) {
       <div class="weather-forecast-item">
-        <app-skeleton class="day" [style]="StyleEnum.TextMedium"/>
-        <app-skeleton class="image" [style]="StyleEnum.Image"/>
-        <app-skeleton class="temperature" [style]="StyleEnum.TextSmall"/>
+        <app-skeleton class="day" [style]="StyleEnum.TextMedium" />
+        <app-skeleton class="image" [style]="StyleEnum.Image" />
+        <app-skeleton class="temperature" [style]="StyleEnum.TextSmall" />
       </div>
     }
   }

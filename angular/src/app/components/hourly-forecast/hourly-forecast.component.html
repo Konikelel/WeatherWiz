@@ -1,20 +1,23 @@
 <h3 class="container-title forecast">Hourly Forecast</h3>
 <div class="forecast-container snap-inline">
   @if (!isLoading()) {
-  @for (weatherForecastItem of weatherForecastHours(); track weatherForecastItem.time) {
-    <div class="weather-forecast-item">
-      <span class="day">{{ weatherForecastItem.time | date:"HH:mm" }}</span>
-      <img class="image" src="../../../assets/02d.png" alt="weather" />
-      <span class="temperature">{{ weatherForecastItem.data.temp }} °C</span>
-    </div>
-  }
+    @for (
+      weatherForecastItem of weatherForecastHours();
+      track weatherForecastItem.time
+    ) {
+      <div class="weather-forecast-item">
+        <span class="day">{{ weatherForecastItem.time | date: "HH:mm" }}</span>
+        <img class="image" src="../../../assets/02d.png" alt="weather" />
+        <span class="temperature">{{ weatherForecastItem.data.temp }} °C</span>
+      </div>
+    }
   } @else {
-  @for (number of Array(6); track number) {
-    <div class="weather-forecast-item">
-      <app-skeleton class="day" [style]="StyleEnum.TextMedium"/>
-      <app-skeleton class="image" [style]="StyleEnum.Image"/>
-      <app-skeleton class="temperature" [style]="StyleEnum.TextSmall"/>
-    </div>
+    @for (number of Array(8); track number) {
+      <div class="weather-forecast-item">
+        <app-skeleton class="day" [style]="StyleEnum.TextMedium" />
+        <app-skeleton class="image" [style]="StyleEnum.Image" />
+        <app-skeleton class="temperature" [style]="StyleEnum.TextSmall" />
+      </div>
+    }
   }
-}
 </div>

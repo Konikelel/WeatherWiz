@@ -4,23 +4,23 @@
       <span class="temperature">{{ weatherCurrent()!.data!.temp }} °C</span>
       <span class="description">{{ weatherCurrent()!.desc!.description }}</span>
     } @else {
-      <app-skeleton class="temperature" [style]="StyleEnum.TextLarge"/>
-      <app-skeleton class="description" [style]="StyleEnum.TextMedium"/>
+      <app-skeleton class="temperature" [style]="StyleEnum.TextMedium" />
+      <app-skeleton class="description" [style]="StyleEnum.TextSmall" />
     }
   </div>
   @if (!isLoading()) {
-    <img class="image" alt="weather" src="assets/02d.png"/>
+    <img class="image" alt="weather" src="assets/02d.png" />
   } @else {
-    <app-skeleton class="image" [style]="StyleEnum.Image"/>
+    <app-skeleton class="image" [style]="StyleEnum.Image" />
   }
 </div>
 <div class="weather-now-datelocation">
   <div class="weather-now-date">
     <span class="material-symbols-outlined icon">calendar_month</span>
     @if (!isLoading()) {
-      <span class="data">{{ currentDate | date:'cccc, d MMM' }}</span>
+      <span class="data">{{ currentDate | date: "cccc, d MMM" }}</span>
     } @else {
-      <app-skeleton class="data" [style]="StyleEnum.TextMedium"/>
+      <app-skeleton class="data" [style]="StyleEnum.TextMedium" />
     }
   </div>
   <div class="weather-now-location">
@@ -31,7 +31,7 @@
         {{ weatherCurrent()!.location!.country }}</span
       >
     } @else {
-      <app-skeleton class="data" [style]="StyleEnum.TextSmall"/>
+      <app-skeleton class="data" [style]="StyleEnum.TextSmall" />
     }
   </div>
 </div>

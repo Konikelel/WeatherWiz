@@ -5,7 +5,12 @@
   </div>
   <div class="search">
     <span class="material-symbols-outlined">search</span>
-    <input placeholder="Search city..." type="text" />
+    <input
+      #cityInput
+      (keydown.enter)="changeCityWeather(cityInput.value)"
+      placeholder="Search city..."
+      type="text"
+    />
   </div>
   <button class="location">
     <span class="material-symbols-outlined">location_on</span>
