@@ -1,6 +1,5 @@
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,12 +11,13 @@ import { WeatherService } from '../../services/weather.service';
 export class NavbarComponent {
   public city = input.required<string>();
   public cityChange = output<string>();
+  public submit = output<void>();
 
-  constructor(private weatherService: WeatherService) {}
+  protected async onCityChange(city: string) {
+    this.cityChange.emit(this.city());
+  }
 
-  public async changeCityWeather(city: string) {
-    this.cityChange.emit(city);
-    await this.weatherService.clearWeatherData();
-    await this.weatherService.fetchWeatherData(this.city());
+  protected async onSubmit() {
+    this.submit.emit();
   }
 }

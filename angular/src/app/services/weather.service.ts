@@ -27,14 +27,14 @@ export class WeatherService {
     this.weatherCurrent.set(undefined);
     this.weatherForecastDays.set(undefined);
     this.weatherForecastHours.set(undefined);
-    // this.pollution.set(undefined);
+    this.pollution.set(undefined);
   }
 
   async fetchWeatherData(city: string) {
     await this.fetchCurrentWeather(city);
     await this.fetchForecastWeather(city, 'days');
     await this.fetchForecastWeather(city, 'hours');
-    // await this.fetchPollution(city);
+    await this.fetchPollution(city);
   }
 
   async fetchCurrentWeather(city: string) {

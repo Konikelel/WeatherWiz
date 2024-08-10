@@ -1,7 +1,11 @@
-<app-navbar [(city)]="city" />
+<app-navbar (submit)="onCitySubmit()" [(city)]="city" />
 <div class="container">
-  <app-weather-now [city]="city" />
-  <app-weather-data [city]="city" />
-  <app-weekly-forecast [city]="city" />
-  <app-hourly-forecast [city]="city" />
+  <app-weather-now [weatherCurrent]="weatherService.weatherCurrent()" />
+  <app-weather-data [weatherCurrent]="weatherService.weatherCurrent()" />
+  <app-weekly-forecast
+    [weatherForecast]="weatherService.weatherForecastDays()"
+  />
+  <app-hourly-forecast
+    [weatherForecast]="weatherService.weatherForecastHours()"
+  />
 </div>

@@ -1,8 +1,8 @@
 <h3 class="container-title forecast">Hourly Forecast</h3>
 <div class="forecast-container snap-inline">
-  @if (!isLoading()) {
+  @if (weatherForecast() != undefined) {
     @for (
-      weatherForecastItem of weatherForecastHours();
+      weatherForecastItem of weatherForecast();
       track weatherForecastItem.time
     ) {
       <div class="weather-forecast-item">

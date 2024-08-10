@@ -1,27 +1,19 @@
-import {Component, computed, input} from '@angular/core';
-import {WeatherService} from "../../services/weather.service";
-import {PercentPipe, DatePipe} from "@angular/common";
-import { SkeletonComponent } from "../skeleton/skeleton.component";
-import {StyleEnum} from "../../enums/style.enum";
-
+import { Component, computed, input } from '@angular/core';
+import { DatePipe, PercentPipe } from '@angular/common';
+import { SkeletonComponent } from '../skeleton/skeleton.component';
+import { StyleEnum } from '../../enums/style.enum';
+import IWeatherCurrent from '../../models/weather-current.module';
 
 @Component({
   selector: 'app-weather-data',
   standalone: true,
-  imports: [
-    SkeletonComponent,
-    PercentPipe,
-    DatePipe
-  ],
+  imports: [SkeletonComponent, PercentPipe, DatePipe],
   templateUrl: './weather-data.component.html',
   styleUrl: './weather-data.component.scss',
 })
 export class WeatherDataComponent {
-  public city = input.required<string>();
-  protected weatherData = this.weatherService.weatherCurrent.asReadonly();
-  protected isLoading = computed(() => this.weatherData() == undefined)
-
-  constructor(private weatherService: WeatherService) {}
+  public weatherCurrent = input.required<IWeatherCurrent | undefined>();
+  protected isLoading = computed(() => this.weatherCurrent() == undefined);
 
   protected readonly StyleEnum = StyleEnum;
 }

@@ -1,27 +1,21 @@
-import {Component, computed, input} from '@angular/core';
-import { WeatherService } from '../../services/weather.service';
-import { DatePipe } from "@angular/common";
-import { SkeletonComponent } from "../skeleton/skeleton.component";
-import {StyleEnum} from "../../enums/style.enum";
+import { Component, computed, input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { SkeletonComponent } from '../skeleton/skeleton.component';
+import { StyleEnum } from '../../enums/style.enum';
+import IWeatherCurrent from '../../models/weather-current.module';
 
 @Component({
   selector: 'app-weather-now',
   standalone: true,
-  imports: [
-    SkeletonComponent,
-    DatePipe
-  ],
+  imports: [SkeletonComponent, DatePipe],
   templateUrl: './weather-now.component.html',
   styleUrl: './weather-now.component.scss',
 })
 export class WeatherNowComponent {
-  public city = input.required<string>();
-  protected weatherCurrent = this.weatherService.weatherCurrent.asReadonly();
-  protected isLoading = computed(() => this.weatherCurrent() == undefined)
-  protected currentDate = Date.now();
-  protected readonly Math = Math;
+  public weatherCurrent = input.required<IWeatherCurrent | undefined>();
+  protected isLoading = computed(() => this.weatherCurrent() == undefined);
 
-  constructor(private weatherService: WeatherService) {}
-
+  protected readonly currentDate = Date.now();
   protected readonly StyleEnum = StyleEnum;
+  protected readonly Math = Math;
 }

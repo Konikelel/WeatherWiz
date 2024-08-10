@@ -7,7 +7,8 @@
     <span class="material-symbols-outlined">search</span>
     <input
       #cityInput
-      (keydown.enter)="changeCityWeather(cityInput.value)"
+      (keydown.enter)="onSubmit()"
+      [(ngModel)]="onCityChange(cityInput.value)"
       placeholder="Search city..."
       type="text"
     />

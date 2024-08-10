@@ -75,7 +75,7 @@ body {
 }
 
 .weather-forecast-item {
-  margin: 0 10% 10%;
+  margin: 0 5% 5%;
 
   display: flex;
   flex-direction: column;
@@ -164,6 +164,10 @@ body::-webkit-scrollbar {
 @media (max-width: 770px) {
   :root {
     --text-small: 0.9rem;
+  }
+
+  .weather-forecast-item {
+    margin: 0 10% 10%;
   }
 }
 

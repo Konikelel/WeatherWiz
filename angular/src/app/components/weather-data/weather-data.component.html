@@ -7,9 +7,9 @@
       <div class="weather-data-item-info">
         <span class="material-symbols-outlined icon">humidity_percentage</span>
         @if (!isLoading()) {
-          <span class="value">{{ weatherData()!.data!.humidity }} %</span>
+          <span class="value">{{ weatherCurrent()!.data!.humidity }} %</span>
         } @else {
-          <app-skeleton class="value" [style]="StyleEnum.TextMedium"/>
+          <app-skeleton class="value" [style]="StyleEnum.TextMedium" />
         }
       </div>
     </div>
@@ -19,9 +19,9 @@
       <div class="weather-data-item-info">
         <span class="material-symbols-outlined icon">airwave</span>
         @if (!isLoading()) {
-          <span class="value">{{ weatherData()!.data!.pressure }} hPa</span>
+          <span class="value">{{ weatherCurrent()!.data!.pressure }} hPa</span>
         } @else {
-          <app-skeleton class="value" [style]="StyleEnum.TextMedium"/>
+          <app-skeleton class="value" [style]="StyleEnum.TextMedium" />
         }
       </div>
     </div>
@@ -31,9 +31,9 @@
       <div class="weather-data-item-info">
         <span class="material-symbols-outlined icon">visibility</span>
         @if (!isLoading()) {
-          <span class="value">{{ weatherData()!.data!.visibility }} km</span>
+          <span class="value">{{ weatherCurrent()!.data!.visibility }} km</span>
         } @else {
-          <app-skeleton class="value" [style]="StyleEnum.TextSmall"/>
+          <app-skeleton class="value" [style]="StyleEnum.TextSmall" />
         }
       </div>
     </div>
@@ -43,9 +43,9 @@
       <div class="weather-data-item-info">
         <span class="material-symbols-outlined icon">thermostat</span>
         @if (!isLoading()) {
-          <span class="value">{{ weatherData()!.data!.feels_like }} °C</span>
+          <span class="value">{{ weatherCurrent()!.data!.feels_like }} °C</span>
         } @else {
-          <app-skeleton class="value" [style]="StyleEnum.TextSmall"/>
+          <app-skeleton class="value" [style]="StyleEnum.TextSmall" />
         }
       </div>
     </div>
@@ -58,18 +58,22 @@
     <div class="weather-data-item flex-custom">
       <span class="material-symbols-outlined icon">sunny</span>
       @if (!isLoading()) {
-        <span class="value">{{ weatherData()!.location!.sunrise | date:"HH:mm" }}</span>
+        <span class="value">{{
+          weatherCurrent()!.location!.sunrise | date: "HH:mm"
+        }}</span>
       } @else {
-        <app-skeleton class="value" [style]="StyleEnum.TextMedium"/>
+        <app-skeleton class="value" [style]="StyleEnum.TextMedium" />
       }
     </div>
 
     <div class="weather-data-item flex-custom">
       <span class="material-symbols-outlined icon">bedtime</span>
       @if (!isLoading()) {
-        <span class="value">{{ weatherData()!.location!.sunset | date:"HH:mm"}}</span>
+        <span class="value">{{
+          weatherCurrent()!.location!.sunset | date: "HH:mm"
+        }}</span>
       } @else {
-        <app-skeleton class="value" [style]="StyleEnum.TextMedium"/>
+        <app-skeleton class="value" [style]="StyleEnum.TextMedium" />
       }
     </div>
   </div>
