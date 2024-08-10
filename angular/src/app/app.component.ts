@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { WeeklyForecastComponent } from './components/weekly-forecast/weekly-forecast.component';
@@ -23,37 +23,16 @@ import { WeatherService } from './services/weather.service';
 })
 export class AppComponent {
   title = 'weatherWiz';
-  public city: string = 'London';
+  public city = signal<string>('London');
 
   constructor(protected weatherService: WeatherService) {}
 
   async ngOnInit() {
-    await this.weatherService.fetchWeatherData(this.city);
-
-    if (
-      !this.weatherService.weatherCurrent() &&
-      !this.weatherService.weatherForecastHours() &&
-      !this.weatherService.weatherForecastDays() &&
-      !this.weatherService.pollution()
-    ) {
-      console.log('Error fetching data');
-    }
+    await this.weatherService.fetchWeatherData(this.city());
   }
 
-  protected async onCitySubmit() {
-    await this.getCityWeatherData();
-  }
-
-  private async getCityWeatherData() {
-    await this.weatherService.fetchWeatherData(this.city);
-
-    if (
-      !this.weatherService.weatherCurrent() &&
-      !this.weatherService.weatherForecastHours() &&
-      !this.weatherService.weatherForecastDays() &&
-      !this.weatherService.pollution()
-    ) {
-      console.log('Error fetching data');
-    }
+  protected async onCitySubmit(city: string) {
+    await this.weatherService.fetchWeatherData(city);
+    this.city.set(city);
   }
 }

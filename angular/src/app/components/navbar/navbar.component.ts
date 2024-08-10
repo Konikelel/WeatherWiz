@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import {Component, output, input, signal, computed} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,14 +10,23 @@ import { FormsModule } from '@angular/forms';
 })
 export class NavbarComponent {
   public city = input.required<string>();
-  public cityChange = output<string>();
-  public submit = output<void>();
+  public citySubmit = output<string>();
+  protected cityInputValue = signal<string>('');
+  protected showAutocompleteDropDown = signal<boolean>(false);
 
-  protected async onCityChange(city: string) {
-    this.cityChange.emit(this.city());
+  protected onCityChange(city: string) {
+    if (!this.showAutocompleteDropDown()) {
+      this.showAutocompleteDropDown.set(true);
+    }
+    this.cityInputValue.set(city);
+
+    // SHOW SEARCHING AND HIDE WHEN ON SUBMIT, VALIDATE IF CITY EXISTS
   }
 
   protected async onSubmit() {
-    this.submit.emit();
+    if (this.city() != this.cityInputValue()) {
+      this.showAutocompleteDropDown.set(false);
+      this.citySubmit.emit(this.cityInputValue());
+    }
   }
 }

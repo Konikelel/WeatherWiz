@@ -15,5 +15,5 @@ export class HourlyForecastComponent {
   public weatherForecast = input.required<IWeatherForecast[] | undefined>();
 
   protected readonly StyleEnum = StyleEnum;
-  protected readonly Array = Array;
+  protected readonly numberArray = [...new Array(8).keys()];
 }

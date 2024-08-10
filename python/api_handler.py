@@ -82,25 +82,3 @@ async def fetchForecast(city: str, interval: Literal["days", "hours"]):
     except KeyError:
         print(f"Invalid data: {dataList}")
         return None
-
-
-async def fetchAirPollution(city: str):
-    response = requests.get(
-        f"https://api.openweathermap.org/data/2.5/air_pollution?q={city}&appid={API_KEY}&units=metric"
-    )
-
-    if response.status_code != 200:
-        print(f"API error: {response.json()}")
-        return None
-
-    data = response.json()
-    try:
-        return AirPollution(
-            pm2_5=data["list"][0]["components"]["pm2_5"],
-            so2=data["list"][0]["components"]["so2"],
-            no2=data["list"][0]["components"]["no2"],
-            o3=data["list"][0]["components"]["o3"],
-        )
-    except KeyError:
-        print(f"Invalid data: {data}")
-        return None

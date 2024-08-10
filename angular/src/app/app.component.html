@@ -1,4 +1,4 @@
-<app-navbar (submit)="onCitySubmit()" [(city)]="city" />
+<app-navbar (citySubmit)="onCitySubmit($event)" [city]="city()" />
 <div class="container">
   <app-weather-now [weatherCurrent]="weatherService.weatherCurrent()" />
   <app-weather-data [weatherCurrent]="weatherService.weatherCurrent()" />

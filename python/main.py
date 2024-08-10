@@ -48,17 +48,5 @@ async def forecast_weather(
     return weather
 
 
-@app.get("/pollution")
-async def pollution_weather(
-    city: Annotated[str, Query(description="Name of the city to get pollution data", min_length=1, max_length=30)]
-):
-    weather = await fetchAirPollution(city=city)
-
-    if not weather:
-        raise HTTPException(status_code=400, detail="Could not fetch weather data from API")
-
-    return weather
-
-
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)

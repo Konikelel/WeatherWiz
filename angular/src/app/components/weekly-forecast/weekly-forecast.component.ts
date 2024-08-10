@@ -15,5 +15,5 @@ export class WeeklyForecastComponent {
   public weatherForecast = input.required<IWeatherForecast[] | undefined>();
 
   protected readonly StyleEnum = StyleEnum;
-  protected readonly Array = Array;
+  protected readonly numberArray = [...new Array(5).keys()];
 }

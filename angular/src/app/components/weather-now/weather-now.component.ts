@@ -17,5 +17,4 @@ export class WeatherNowComponent {
 
   protected readonly currentDate = Date.now();
   protected readonly StyleEnum = StyleEnum;
-  protected readonly Math = Math;
 }

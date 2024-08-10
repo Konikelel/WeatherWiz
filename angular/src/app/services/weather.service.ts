@@ -3,7 +3,6 @@ import { environment } from '../../environments/environment';
 import { HttpService } from './http.service';
 import IWeatherCurrent from '../models/weather-current.module';
 import IWeatherForecast from '../models/weather-forecast.module';
-import IAirPollution from '../models/air-pollution.module';
 
 type IntervalType = 'days' | 'hours';
 
@@ -18,36 +17,44 @@ export class WeatherService {
   public weatherForecastHours = signal<IWeatherForecast[] | undefined>(
     undefined,
   );
-  public pollution = signal<IAirPollution | undefined>(undefined);
   private _apiUrl = environment.apiUrl;
 
-  constructor(private _httpService: HttpService) {}
+  constructor(private _httpService: HttpService) {
+    const weatherCurrent = localStorage.getItem("weatherCurrent");
+    if (weatherCurrent) {
+      this.weatherCurrent.set(JSON.parse(weatherCurrent));
+    }
 
-  async clearWeatherData() {
-    this.weatherCurrent.set(undefined);
-    this.weatherForecastDays.set(undefined);
-    this.weatherForecastHours.set(undefined);
-    this.pollution.set(undefined);
+    const weatherForecastDays = localStorage.getItem("weatherForecastDays");
+    if (weatherForecastDays) {
+      this.weatherForecastDays.set(JSON.parse(weatherForecastDays));
+    }
+
+    const weatherForecastHours = localStorage.getItem("weatherForecastHours");
+    if (weatherForecastHours) {
+      this.weatherForecastHours.set(JSON.parse(weatherForecastHours));
+    }
   }
 
   async fetchWeatherData(city: string) {
-    await this.fetchCurrentWeather(city);
-    await this.fetchForecastWeather(city, 'days');
-    await this.fetchForecastWeather(city, 'hours');
-    await this.fetchPollution(city);
+    await this.fetchWeatherCurrent(city);
+    await this.fetchWeatherForecast(city, 'days');
+    await this.fetchWeatherForecast(city, 'hours');
+    // await this.fetchPollution(city);
   }
 
-  async fetchCurrentWeather(city: string) {
+  async fetchWeatherCurrent(city: string) {
     const response = await this._httpService.get<IWeatherCurrent>(
       `${this._apiUrl}/weather/current?city=${city}`,
     );
 
     if (response.ok) {
       this.weatherCurrent.set(response.object);
+      localStorage.setItem("weatherCurrent", JSON.stringify(response.object));
     }
   }
 
-  async fetchForecastWeather(city: string, interval: IntervalType) {
+  async fetchWeatherForecast(city: string, interval: IntervalType) {
     const response = await this._httpService.get<IWeatherForecast[]>(
       `${this._apiUrl}/weather/forecast?city=${city}&interval=${interval}`,
     );
@@ -55,19 +62,11 @@ export class WeatherService {
     if (response.ok) {
       if (interval === 'days') {
         this.weatherForecastDays.set(response.object);
+        localStorage.setItem("weatherForecastDays", JSON.stringify(response.object));
       } else {
         this.weatherForecastHours.set(response.object);
+        localStorage.setItem("weatherForecastHours", JSON.stringify(response.object));
       }
-    }
-  }
-
-  async fetchPollution(city: string) {
-    const response = await this._httpService.get<IAirPollution>(
-      `${this._apiUrl}/pollution?city=${city}`,
-    );
-
-    if (response.ok) {
-      this.pollution.set(response.object);
     }
   }
 }
