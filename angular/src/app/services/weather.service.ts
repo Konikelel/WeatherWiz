@@ -21,16 +21,15 @@ export class WeatherService {
 
   constructor(private _httpService: HttpService) {
     const weatherCurrent = localStorage.getItem("weatherCurrent");
+    const weatherForecastDays = localStorage.getItem("weatherForecastDays");
+    const weatherForecastHours = localStorage.getItem("weatherForecastHours");
+
     if (weatherCurrent) {
       this.weatherCurrent.set(JSON.parse(weatherCurrent));
     }
-
-    const weatherForecastDays = localStorage.getItem("weatherForecastDays");
     if (weatherForecastDays) {
       this.weatherForecastDays.set(JSON.parse(weatherForecastDays));
     }
-
-    const weatherForecastHours = localStorage.getItem("weatherForecastHours");
     if (weatherForecastHours) {
       this.weatherForecastHours.set(JSON.parse(weatherForecastHours));
     }
@@ -40,7 +39,6 @@ export class WeatherService {
     await this.fetchWeatherCurrent(city);
     await this.fetchWeatherForecast(city, 'days');
     await this.fetchWeatherForecast(city, 'hours');
-    // await this.fetchPollution(city);
   }
 
   async fetchWeatherCurrent(city: string) {
