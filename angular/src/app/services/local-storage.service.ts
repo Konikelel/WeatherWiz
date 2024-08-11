@@ -6,10 +6,12 @@ import IStorageContainer from '../models/storage-container.model';
     providedIn: 'root',
 })
 export class LocalStorageService {
+    private _defaultDurationTime = 1000 * 60 * 60; // 1 hour
+
     getItem<Type>(key: string) {
         const container = ls.get<IStorageContainer<any>>(key, {encrypt: true});
 
-        if (!container || container?.key != key) {
+        if (!container || container?.key != key || !container?.expiresAt || container.expiresAt < Date.now()) {
             return null
         }
 
@@ -21,8 +23,8 @@ export class LocalStorageService {
         ls.set(key, container, {encrypt: true});
     }
 
-    private createContainer<Type>(key: string, value: Type): IStorageContainer<Type> {
-        return {value, key};
+    private createContainer<Type>(key: string, value: Type, duration: number | null = this._defaultDurationTime): IStorageContainer<Type> {
+        return {value, key, expiresAt: duration ? Date.now() + duration : null};
     }
 
 }
