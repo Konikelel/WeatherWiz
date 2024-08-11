@@ -2,7 +2,7 @@ from os import getenv
 from typing import Literal
 
 import requests
-from models import Location, WeatherCurrent, WeatherData, WeatherDesc, WeatherForecast, Wind
+from models import Location, WeatherCurrent, WeatherData, WeatherDesc, WeatherForecast, Wind, City
 
 API_KEY = getenv("API_KEY")
 
@@ -81,4 +81,26 @@ async def fetchForecast(city: str, interval: Literal["days", "hours"]):
         ]
     except KeyError:
         print(f"Invalid data: {dataList}")
+        return None
+
+async def fetchCities(city: str):
+    response = requests.get(f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit={6}&appid={API_KEY}")
+
+    if response.status_code != 200:
+        print(f"API error: {response.json()}")
+        return None
+
+    data = response.json()
+
+    try:
+        return [
+            City(
+                name=city["name"],
+                country=city["country"],
+                state=city["state"],
+            )
+            for city in data
+        ]
+    except KeyError:
+        print(f"Invalid data: {data}")
         return None
