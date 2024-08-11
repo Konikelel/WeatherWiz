@@ -1,8 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpService } from './http.service';
-import IWeatherCurrent from '../models/weather-current.module';
-import IWeatherForecast from '../models/weather-forecast.module';
+import { LocalStorageService } from './local-storage.service';
+import IWeatherCurrent from '../models/weather-current.model';
+import IWeatherForecast from '../models/weather-forecast.model';
 
 type IntervalType = 'days' | 'hours';
 
@@ -11,27 +12,26 @@ type IntervalType = 'days' | 'hours';
 })
 export class WeatherService {
   public weatherCurrent = signal<IWeatherCurrent | undefined>(undefined);
-  public weatherForecastDays = signal<IWeatherForecast[] | undefined>(
-    undefined,
-  );
-  public weatherForecastHours = signal<IWeatherForecast[] | undefined>(
-    undefined,
-  );
+  public weatherForecastDays = signal<IWeatherForecast[] | undefined>(undefined);
+  public weatherForecastHours = signal<IWeatherForecast[] | undefined>(undefined);
   private _apiUrl = environment.apiUrl;
 
-  constructor(private _httpService: HttpService) {
-    const weatherCurrent = localStorage.getItem("weatherCurrent");
-    const weatherForecastDays = localStorage.getItem("weatherForecastDays");
-    const weatherForecastHours = localStorage.getItem("weatherForecastHours");
+  constructor(
+    private _httpService: HttpService,
+    private _localStorageService: LocalStorageService,
+  ) {
+    const weatherCurrent = this._localStorageService.getItem<IWeatherCurrent>('weatherCurrent');
+    const weatherForecastDays = this._localStorageService.getItem<IWeatherForecast[]>('weatherForecastDays');
+    const weatherForecastHours = this._localStorageService.getItem<IWeatherForecast[]>('weatherForecastHours');
 
     if (weatherCurrent) {
-      this.weatherCurrent.set(JSON.parse(weatherCurrent));
+      this.weatherCurrent.set(weatherCurrent);
     }
     if (weatherForecastDays) {
-      this.weatherForecastDays.set(JSON.parse(weatherForecastDays));
+      this.weatherForecastDays.set(weatherForecastDays);
     }
     if (weatherForecastHours) {
-      this.weatherForecastHours.set(JSON.parse(weatherForecastHours));
+      this.weatherForecastHours.set(weatherForecastHours);
     }
   }
 
@@ -42,28 +42,24 @@ export class WeatherService {
   }
 
   async fetchWeatherCurrent(city: string) {
-    const response = await this._httpService.get<IWeatherCurrent>(
-      `${this._apiUrl}/weather/current?city=${city}`,
-    );
+    const response = await this._httpService.get<IWeatherCurrent>(`${this._apiUrl}/weather/current?city=${city}`);
 
     if (response.ok) {
       this.weatherCurrent.set(response.object);
-      localStorage.setItem("weatherCurrent", JSON.stringify(response.object));
+      this._localStorageService.setItem('weatherCurrent', response.object);
     }
   }
 
   async fetchWeatherForecast(city: string, interval: IntervalType) {
-    const response = await this._httpService.get<IWeatherForecast[]>(
-      `${this._apiUrl}/weather/forecast?city=${city}&interval=${interval}`,
-    );
+    const response = await this._httpService.get<IWeatherForecast[]>(`${this._apiUrl}/weather/forecast?city=${city}&interval=${interval}`);
 
     if (response.ok) {
       if (interval === 'days') {
         this.weatherForecastDays.set(response.object);
-        localStorage.setItem("weatherForecastDays", JSON.stringify(response.object));
+        this._localStorageService.setItem('weatherForecastDays', response.object);
       } else {
         this.weatherForecastHours.set(response.object);
-        localStorage.setItem("weatherForecastHours", JSON.stringify(response.object));
+        this._localStorageService.setItem('weatherForecastHours', response.object);
       }
     }
   }
