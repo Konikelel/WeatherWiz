@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv(override=True)
 
-from api_handler import fetchAirPollution, fetchCurrentWeather, fetchForecast
+from api_handler import fetchCurrentWeather, fetchForecast
 
 app = FastAPI()
 origin = getenv("ORIGIN")

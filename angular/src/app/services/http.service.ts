@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import IResponse from '../models/response.module';
+import IResponse from '../models/response.model';
 
 @Injectable({
   providedIn: 'root',

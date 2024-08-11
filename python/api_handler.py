@@ -2,7 +2,7 @@ from os import getenv
 from typing import Literal
 
 import requests
-from models import AirPollution, Location, WeatherCurrent, WeatherData, WeatherDesc, WeatherForecast, Wind
+from models import Location, WeatherCurrent, WeatherData, WeatherDesc, WeatherForecast, Wind
 
 API_KEY = getenv("API_KEY")
 

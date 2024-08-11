@@ -2,7 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { SkeletonComponent } from '../skeleton/skeleton.component';
 import { StyleEnum } from '../../enums/style.enum';
-import IWeatherCurrent from '../../models/weather-current.module';
+import IWeatherCurrent from '../../models/weather-current.model';
 
 @Component({
   selector: 'app-weather-now',

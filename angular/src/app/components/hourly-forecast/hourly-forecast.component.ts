@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { SkeletonComponent } from '../skeleton/skeleton.component';
 import { StyleEnum } from '../../enums/style.enum';
-import IWeatherForecast from '../../models/weather-forecast.module';
+import IWeatherForecast from '../../models/weather-forecast.model';
 
 @Component({
   selector: 'app-hourly-forecast',
