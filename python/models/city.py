@@ -5,4 +5,4 @@ from dataclasses import dataclass
 class City:
     name: str
     country: str
-    state: str
+    state: str | None

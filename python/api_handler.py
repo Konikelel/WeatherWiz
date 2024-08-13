@@ -97,7 +97,7 @@ async def fetchCities(city: str):
             City(
                 name=city["name"],
                 country=city["country"],
-                state=city["state"],
+                state=city["state"] if "state" in city else None,
             )
             for city in data
         ]

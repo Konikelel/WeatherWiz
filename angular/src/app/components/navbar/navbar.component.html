@@ -1,20 +1,33 @@
 <nav>
-  <div class="header">
-    <h1>WeatherWiz</h1>
-    <span class="material-symbols-outlined">flare</span>
-  </div>
-  <div class="search">
-    <span class="material-symbols-outlined">search</span>
-    <input
-      #cityInput
-      (input)="onCityChange(cityInput.value)"
-      (keydown.enter)="onSubmit()"
-      placeholder="Search city..."
-      type="text"
-    />
-  </div>
-  <button class="location">
-    <span class="material-symbols-outlined">location_on</span>
-    <p>Current location</p>
-  </button>
+    <div (click)="onExitSearch()" [class.active]="autocompleteCities()" class="shadow-cover"></div>
+    <div class="header">
+        <h1>WeatherWiz</h1>
+        <span class="material-symbols-outlined">flare</span>
+    </div>
+    <div [class.active]="autocompleteCities()" class="search">
+        <div [ngStyle]="areAutocompleteCities() ? {'border-bottom-left-radius': 0, 'border-bottom-right-radius': 0}: {}"
+             class="item">
+            <span class="material-symbols-outlined">search</span>
+            <input
+                #cityInput
+                (input)="onCityInputChange(cityInput.value)"
+                (keydown.enter)="onSubmit()"
+                placeholder="Search city..."
+                type="text"
+            />
+        </div>
+        <div class="autocomplete-dropdown-menu">
+            @for (city of autocompleteCities(); track city) {
+                <div class="item" (click)="onSubmitCity(city)">
+                    <span class="material-symbols-outlined">apartment</span>
+                    <p class="name">{{ city.name }}</p>
+                    <p class="state-country">{{ city.state }}, {{ city.country }}</p>
+                </div>
+            }
+        </div>
+    </div>
+    <button class="location">
+        <span class="material-symbols-outlined">location_on</span>
+        <p>Current location</p>
+    </button>
 </nav>

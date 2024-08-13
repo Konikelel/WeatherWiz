@@ -42,6 +42,12 @@ export class WeatherService {
         await this.fetchWeatherForecast(city, 'hours');
     }
 
+    clearWeatherData() {
+        this.weatherCurrent.set(undefined);
+        this.weatherForecastDays.set(undefined);
+        this.weatherForecastHours.set(undefined);
+    }
+
     async fetchWeatherCurrent(city: string) {
         const response = await this._httpService.get<IWeatherCurrent>(`${this._apiUrl}/weather/current?city=${city}`);
 
@@ -67,6 +73,6 @@ export class WeatherService {
 
     async fetchCities(input: string) {
         const response = await this._httpService.get<ICity[]>(`${this._apiUrl}/cities?city=${input}`);
-        return response.ok ? response.object : null;
+        return response.ok ? response.object : [];
     }
 }
