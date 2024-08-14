@@ -8,8 +8,8 @@ from models import Location, WeatherCurrent, WeatherData, WeatherDesc, WeatherFo
 API_KEY = getenv("API_KEY")
 
 
-async def fetchCurrentWeather(city: str):
-    response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric")
+async def fetchCurrentWeather(lat: float, lon: float):
+    response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric")
 
     if response.status_code != 200:
         print(f"API error: {response.json()}")
@@ -48,8 +48,8 @@ async def fetchCurrentWeather(city: str):
         return None
 
 
-async def fetchForecast(city: str, interval: Literal["days", "hours"]):
-    response = requests.get(f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={API_KEY}&units=metric")
+async def fetchForecast(lat: float, lon: float, interval: Literal["days", "hours"]):
+    response = requests.get(f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API_KEY}&units=metric")
 
     if response.status_code != 200:
         print(f"API error: {response.json()}")

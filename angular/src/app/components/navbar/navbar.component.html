@@ -17,7 +17,7 @@
             />
         </div>
         <div class="autocomplete-dropdown-menu">
-            @for (city of autocompleteCities(); track city) {
+            @for (city of autocompleteCities(); track city.id) {
                 <div class="item" (click)="onSubmitCity(city)">
                     <span class="material-symbols-outlined">apartment</span>
                     <p class="name">{{ city.name }}</p>

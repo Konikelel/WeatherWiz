@@ -25,9 +25,10 @@ async def ping():
 
 @app.get("/weather/current")
 async def current_weather(
-    city: Annotated[str, Query(description="Name of the city to get weather data", min_length=1, max_length=30)]
+    lat: Annotated[float, Query(description="Latitude", ge=-90, le=90)],
+    lon: Annotated[float, Query(description="Longitude", ge=-180, le=180)],
 ):
-    data = await fetchCurrentWeather(city=city)
+    data = await fetchCurrentWeather(lat=lat, lon=lon)
 
     if not data:
         raise HTTPException(status_code=400, detail="Could not fetch weather data from API")
@@ -37,10 +38,11 @@ async def current_weather(
 
 @app.get("/weather/forecast")
 async def forecast_weather(
-    city: Annotated[str, Query(description="Name of the city to get weather data", min_length=1, max_length=30)],
+    lat: Annotated[float, Query(description="Latitude", ge=-90, le=90)],
+    lon: Annotated[float, Query(description="Longitude", ge=-180, le=180)],
     interval: Annotated[Literal["days", "hours"], Query(description="Interval of forecast data")],
 ):
-    data = await fetchForecast(city=city, interval=interval)
+    data = await fetchForecast(lat=lat, lon=lon, interval=interval)
 
     if not data:
         raise HTTPException(status_code=400, detail="Could not fetch weather data from API")
