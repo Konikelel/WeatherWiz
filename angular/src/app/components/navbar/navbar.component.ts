@@ -15,7 +15,7 @@ import {CommonModule} from "@angular/common";
     styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-    public city = input.required<ICity>();
+    public city = input.required<ICity | undefined>();
     public citySubmit = output<ICity>();
     protected cityInput = viewChild.required<ElementRef<HTMLInputElement>>('cityInput');
     protected autocompleteCities = signal<ICity[] | undefined>(undefined);

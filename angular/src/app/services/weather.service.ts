@@ -36,7 +36,7 @@ export class WeatherService {
         }
     }
 
-    async fetchWeatherData(city: string) {
+    async fetchWeatherData(city: ICity) {
         await this.fetchWeatherCurrent(city);
         await this.fetchWeatherForecast(city, 'days');
         await this.fetchWeatherForecast(city, 'hours');
@@ -48,8 +48,8 @@ export class WeatherService {
         this.weatherForecastHours.set(undefined);
     }
 
-    async fetchWeatherCurrent(city: string) {
-        const response = await this._httpService.get<IWeatherCurrent>(`${this._apiUrl}/weather/current?city=${city}`);
+    async fetchWeatherCurrent(city: ICity) {
+        const response = await this._httpService.get<IWeatherCurrent>(`${this._apiUrl}/weather/current?city=${city.name}`);
 
         if (response.ok) {
             this.weatherCurrent.set(response.object);
@@ -57,8 +57,8 @@ export class WeatherService {
         }
     }
 
-    async fetchWeatherForecast(city: string, interval: IntervalType) {
-        const response = await this._httpService.get<IWeatherForecast[]>(`${this._apiUrl}/weather/forecast?city=${city}&interval=${interval}`);
+    async fetchWeatherForecast(city: ICity, interval: IntervalType) {
+        const response = await this._httpService.get<IWeatherForecast[]>(`${this._apiUrl}/weather/forecast?city=${city.name}&interval=${interval}`);
 
         if (response.ok) {
             if (interval === 'days') {

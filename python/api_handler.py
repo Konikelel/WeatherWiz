@@ -1,5 +1,6 @@
 from os import getenv
 from typing import Literal
+import uuid
 
 import requests
 from models import Location, WeatherCurrent, WeatherData, WeatherDesc, WeatherForecast, Wind, City
@@ -95,6 +96,9 @@ async def fetchCities(city: str):
     try:
         return [
             City(
+                id=str(uuid.uuid4()),
+                lat=city["lat"],
+                lon=city["lon"],
                 name=city["name"],
                 country=city["country"],
                 state=city["state"] if "state" in city else None,

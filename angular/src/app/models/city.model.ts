@@ -1,5 +1,9 @@
 export default interface ICity {
-    name: string;
-    country: string;
-    state?: string;
+  id: string;
+  lat: number;
+  lon: number;
+
+  name: string;
+  country: string;
+  state?: string;
 }

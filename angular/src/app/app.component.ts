@@ -24,17 +24,22 @@ import ICity from "./models/city.model";
 })
 export class AppComponent {
     title = 'weatherWiz';
-    public city = signal<ICity>({name: 'New York', country: 'US', state: 'NY'});
+    public city = signal<ICity | undefined>(undefined);
 
     constructor(protected weatherService: WeatherService) {
     }
 
     async ngOnInit() {
-        await this.weatherService.fetchWeatherData(this.city().name);
+      const defaultCity: ICity | undefined  = (await this.weatherService.fetchCities("New York"))?.[0];
+
+      if (defaultCity) {
+        this.city.set(defaultCity);
+        await this.weatherService.fetchWeatherData(defaultCity);
+      }
     }
 
     protected async onCitySubmit(city: ICity) {
-        await this.weatherService.fetchWeatherData(city.name);
+        await this.weatherService.fetchWeatherData(city);
         this.city.set(city);
     }
 }
