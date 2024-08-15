@@ -64,6 +64,14 @@ button {
       color: var(--secondary-color);
       flex: 1;
     }
+
+    item:focus {
+      color: blue;
+    }
+  }
+
+  .item:first-child:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 90%, white 10%);
   }
 
   .autocomplete-dropdown-menu {
@@ -126,6 +134,10 @@ button {
     font-size: var(--text-small);
     font-weight: 400;
   }
+}
+
+.location:hover {
+  background-color: color-mix(in srgb, var(--action-color) 92%, white 8%);
 }
 
 @media (max-width: 1280px) {

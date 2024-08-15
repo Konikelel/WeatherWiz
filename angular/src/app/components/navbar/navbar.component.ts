@@ -55,4 +55,24 @@ export class NavbarComponent {
             this.citySubmit.emit(city);
         }
     }
+
+    protected getCurrentLocationWeather() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              async (position) => {
+                this.autocompleteCities.set(undefined);
+                this.weatherService.clearWeatherData();
+                this.cityInput().nativeElement.value = '';
+                
+                await this.weatherService.fetchWeatherData(<ICity>{
+                  lat: position.coords.latitude,
+                  lon: position.coords.longitude,
+                  name: 'Current Location',
+                  id: 'XXX',
+                  country: 'XXX'
+                })
+              }
+            )
+        }
+    }
 }
