@@ -58,7 +58,7 @@ export class WeatherService {
     }
 
     async fetchWeatherForecast(city: ICity, interval: IntervalType) {
-        const response = await this._httpService.get<IWeatherForecast[]>(`${this._apiUrl}/weather/forecast?city=${city.lat}&lon=${city.lon}&interval=${interval}`);
+        const response = await this._httpService.get<IWeatherForecast[]>(`${this._apiUrl}/weather/forecast?lat=${city.lat}&lon=${city.lon}&interval=${interval}`);
 
         if (response.ok) {
             if (interval === 'days') {

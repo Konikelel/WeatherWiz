@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv(override=True)
 
-from api_handler import fetchCurrentWeather, fetchForecast, fetchCities
+from api_handler import fetch_current_weather, fetch_forecast, fetch_cities
 
 app = FastAPI()
 origin = getenv("ORIGIN")
@@ -28,7 +28,7 @@ async def current_weather(
     lat: Annotated[float, Query(description="Latitude", ge=-90, le=90)],
     lon: Annotated[float, Query(description="Longitude", ge=-180, le=180)],
 ):
-    data = await fetchCurrentWeather(lat=lat, lon=lon)
+    data = await fetch_current_weather(lat=lat, lon=lon)
 
     if not data:
         raise HTTPException(status_code=400, detail="Could not fetch weather data from API")
@@ -42,7 +42,7 @@ async def forecast_weather(
     lon: Annotated[float, Query(description="Longitude", ge=-180, le=180)],
     interval: Annotated[Literal["days", "hours"], Query(description="Interval of forecast data")],
 ):
-    data = await fetchForecast(lat=lat, lon=lon, interval=interval)
+    data = await fetch_forecast(lat=lat, lon=lon, interval=interval)
 
     if not data:
         raise HTTPException(status_code=400, detail="Could not fetch weather data from API")
@@ -53,7 +53,7 @@ async def forecast_weather(
 async def cities(
         city: Annotated[str, Query(description="Name of the city to search", min_length=1, max_length=30)],
 ):
-    data = await fetchCities(city=city)
+    data = await fetch_cities(city=city)
 
     if not data:
         raise HTTPException(status_code=400, detail="Could not fetch cities data from API")

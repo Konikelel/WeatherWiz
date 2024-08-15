@@ -21,7 +21,7 @@
                 <div class="item" (click)="onSubmitCity(city)">
                     <span class="material-symbols-outlined">apartment</span>
                     <p class="name">{{ city.name }}</p>
-                    <p class="state-country">{{ city.state }}, {{ city.country }}</p>
+                    <p class="state-country">{{ city.state ? city.state + ", ": "" }}{{ city.country }}</p>
                 </div>
             }
         </div>
