@@ -64,10 +64,6 @@ button {
       color: var(--secondary-color);
       flex: 1;
     }
-
-    item:focus {
-      color: blue;
-    }
   }
 
   .item:first-child:hover {
