@@ -68,7 +68,7 @@ body {
 
 .snap-inline {
   scroll-snap-type: inline mandatory;
-  scroll-padding-inline: 1rem;
+  scroll-padding-inline: 0.5rem;
 }
 
 .snap-inline > * {
