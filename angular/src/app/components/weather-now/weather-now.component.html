@@ -9,7 +9,7 @@
     }
   </div>
   @if (!isLoading()) {
-    <img class="image" alt="weather" src="assets/02d.png" />
+    <img class="image" alt="weather" src="assets/{{ weatherCurrent()!.desc!.icon }}.svg" />
   } @else {
     <app-skeleton class="image" [style]="StyleEnum.Image" />
   }

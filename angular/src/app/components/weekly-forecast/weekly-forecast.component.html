@@ -7,7 +7,7 @@
     ) {
       <div class="weather-forecast-item">
         <span class="day">{{ weatherForecastItem.time | date: "cccc" }}</span>
-        <img class="image" src="assets/02d.png" alt="weather" />
+        <img class="image" src="assets/{{ weatherForecastItem.desc.icon }}.svg" alt="weather" />
         <span class="temperature">{{ weatherForecastItem.data.temp }} °C</span>
       </div>
     }
