@@ -1,7 +1,7 @@
-import { Component, input } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { SkeletonComponent } from '../skeleton/skeleton.component';
-import { StyleEnum } from '../../enums/style.enum';
+import {Component, input} from '@angular/core';
+import {DatePipe} from '@angular/common';
+import {SkeletonComponent} from '../skeleton/skeleton.component';
+import {StyleEnum} from '../../enums/style.enum';
 import IWeatherForecast from '../../models/weather-forecast.model';
 
 @Component({
@@ -12,7 +12,7 @@ import IWeatherForecast from '../../models/weather-forecast.model';
   styleUrl: './hourly-forecast.component.scss',
 })
 export class HourlyForecastComponent {
-  public weatherForecast = input.required<IWeatherForecast[] | undefined>();
+  public weatherForecast = input.required<IWeatherForecast | undefined>();
 
   protected readonly StyleEnum = StyleEnum;
   protected readonly numberArray = [...new Array(8).keys()];

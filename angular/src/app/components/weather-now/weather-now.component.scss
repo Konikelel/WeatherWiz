@@ -76,8 +76,8 @@
     }
 
     .image {
-      height: 8rem;
-      width: 8rem;
+      height: 10rem;
+      width: 10rem;
     }
   }
   .weather-now-datelocation {
@@ -87,7 +87,7 @@
   }
 }
 
-@media (max-width: 870px) {
+@media (max-width: 875px) {
   .weather-now-data {
     .temperature {
       font-size: 4rem !important;
@@ -98,8 +98,8 @@
     }
 
     .image {
-      height: 6rem;
-      width: 6rem;
+      height: 9rem;
+      width: 9rem;
     }
   }
   .weather-now-datelocation {
@@ -120,8 +120,8 @@
     }
 
     .image {
-      height: 8rem;
-      width: 8rem;
+      height: 12rem;
+      width: 12rem;
     }
   }
   .weather-now-datelocation {

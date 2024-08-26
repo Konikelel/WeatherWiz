@@ -1,11 +1,7 @@
-<app-navbar (citySubmit)="onCitySubmit($event)" [city]="city()" />
+<app-navbar (citySubmit)="onCitySubmit($event)" [city]="city()"/>
 <div class="container">
-  <app-weather-now [weatherCurrent]="weatherService.weatherCurrent()" />
-  <app-weather-data [weatherCurrent]="weatherService.weatherCurrent()" />
-  <app-weekly-forecast
-    [weatherForecast]="weatherService.weatherForecastDays()"
-  />
-  <app-hourly-forecast
-    [weatherForecast]="weatherService.weatherForecastHours()"
-  />
+  <app-weather-now [weatherCurrent]="weatherService.weatherCurrent()"/>
+  <app-weather-data [weatherCurrent]="weatherService.weatherCurrent()"/>
+  <app-weekly-forecast [weatherForecast]="weatherService.weatherForecastDays()"/>
+  <app-hourly-forecast [weatherForecast]="weatherService.weatherForecastHours()"/>
 </div>

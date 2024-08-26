@@ -1,7 +1,8 @@
 export default interface ILocation {
-  city: string;
-  country: string;
+    city: string;
+    country: string;
 
-  sunrise: number;
-  sunset: number;
+    sunrise: number;
+    sunset: number;
+    timezone: number;
 }

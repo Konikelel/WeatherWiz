@@ -142,7 +142,6 @@ body::-webkit-scrollbar {
     --text-small: 0.8rem;
 
     --icon-size-large: 2.25rem;
-    --icon-size-medium: 2rem;
     --icon-size-small: 1.25rem;
   }
 }
@@ -154,7 +153,6 @@ body::-webkit-scrollbar {
     --text-small: 0.75rem;
 
     --icon-size-large: 1.75rem;
-    --icon-size-medium: 1.75rem;
   }
 
   .forecast-container {
@@ -175,5 +173,9 @@ body::-webkit-scrollbar {
 @media (max-width: 500px) {
   .forecast-container {
     grid-auto-columns: 33%;
+  }
+
+  .weather-forecast-item {
+    margin: 0 3% 3%;
   }
 }

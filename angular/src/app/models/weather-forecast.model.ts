@@ -1,11 +1,7 @@
-import IWeatherDesc from './weather-desc.model';
-import IWeatherData from './weather-data.model';
-import IWind from './wind.model';
+import ILocation from "./location.model";
+import IWeatherForecastItem from "./weather-forecast-item.model";
 
 export default interface IWeatherForecast {
-  time: number;
-  desc: IWeatherDesc;
-
-  data: IWeatherData;
-  wind: IWind;
+    location: ILocation;
+    data: IWeatherForecastItem[];
 }

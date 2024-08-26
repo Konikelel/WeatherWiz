@@ -8,3 +8,4 @@ class Location:
 
     sunrise: int
     sunset: int
+    timezone: int  # SHIFT IN MS SECONDS FROM UTC

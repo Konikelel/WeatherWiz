@@ -1,18 +1,19 @@
-from os import getenv
-from typing import Literal, TypeVar
 import uuid
+from os import getenv
+from typing import List
+from typing import Literal
 
 import requests
+
 from helpers import convert_city_dto_city, object_exists_in_list
-from models import Location, WeatherCurrent, WeatherData, WeatherDesc, WeatherForecast, Wind, City, CityDTO
-from typing import List, Set
+from models import Location, WeatherCurrent, WeatherData, WeatherDesc, WeatherForecast, WeatherForecastItem, Wind, \
+  CityDTO
 
 API_KEY = getenv("API_KEY")
 
 
 async def fetch_current_weather(lat: float, lon: float):
-    response = requests.get(
-        f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric")
+    response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric")
 
     if response.status_code != 200:
         print(f"API error: {response.json()}")
@@ -21,7 +22,6 @@ async def fetch_current_weather(lat: float, lon: float):
     data = response.json()
 
     try:
-
         return WeatherCurrent(
             desc=WeatherDesc(
                 name=data["weather"][0]["main"],
@@ -44,16 +44,16 @@ async def fetch_current_weather(lat: float, lon: float):
                 country=data["sys"]["country"],
                 sunrise=data["sys"]["sunrise"] * 1000,
                 sunset=data["sys"]["sunset"] * 1000,
+                timezone=data["timezone"] * 1000,
             ),
         )
-    except KeyError:
-        print(f"Invalid data: {data}")
+    except KeyError as error:
+        print(f"Invalid data: {data}\n{error}")
         return None
 
 
 async def fetch_forecast(lat: float, lon: float, interval: Literal["days", "hours"]):
-    response = requests.get(
-        f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API_KEY}&units=metric")
+    response = requests.get(f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API_KEY}&units=metric")
 
     if response.status_code != 200:
         print(f"API error: {response.json()}")
@@ -62,30 +62,35 @@ async def fetch_forecast(lat: float, lon: float, interval: Literal["days", "hour
     data = response.json()
     data_list = data["list"][:8] if interval == "hours" else data["list"][::8]
     try:
-        return [
-            WeatherForecast(
-                time=data["dt"] * 1000,
-                desc=WeatherDesc(
-                    name=data["weather"][0]["main"],
-                    description=data["weather"][0]["description"],
-                    icon=data["weather"][0]["icon"],
-                ),
-                data=WeatherData(
-                    temp=round(data["main"]["temp"]),
-                    humidity=data["main"]["humidity"],
-                    pressure=data["main"]["pressure"],
-                    visibility=data["visibility"] / 1000,
-                    feels_like=data["main"]["feels_like"],
-                ),
-                wind=Wind(
-                    speed=data["wind"]["speed"],
-                    deg=data["wind"]["deg"],
-                ),
-            )
-            for data in data_list
-        ]
-    except KeyError:
-        print(f"Invalid data: {data_list}")
+        return WeatherForecast(
+            location=Location(
+                city=data["city"]["name"], country=data["city"]["country"], sunrise=data["city"]["sunrise"] * 1000, sunset=data["city"]["sunset"] * 1000, timezone=data["city"]["timezone"] * 1000
+            ),
+            data=[
+                WeatherForecastItem(
+                    time=data["dt"] * 1000,
+                    desc=WeatherDesc(
+                        name=data["weather"][0]["main"],
+                        description=data["weather"][0]["description"],
+                        icon=data["weather"][0]["icon"],
+                    ),
+                    data=WeatherData(
+                        temp=round(data["main"]["temp"]),
+                        humidity=data["main"]["humidity"],
+                        pressure=data["main"]["pressure"],
+                        visibility=data["visibility"] / 1000,
+                        feels_like=data["main"]["feels_like"],
+                    ),
+                    wind=Wind(
+                        speed=data["wind"]["speed"],
+                        deg=data["wind"]["deg"],
+                    ),
+                )
+                for data in data_list
+            ],
+        )
+    except KeyError as error:
+        print(f"Invalid data: {data_list}\n{error}")
         return None
 
 
@@ -105,10 +110,11 @@ async def fetch_cities(city: str):
                 name=city["name"],
                 country=city["country"],
                 state=city["state"] if "state" in city else None,
-            ) for city in data
+            )
+            for city in data
         ]
-    except KeyError:
-        print(f"Invalid data: {data}")
+    except KeyError as error:
+        print(f"Invalid data: {data}\n{error}")
         return None
 
     unique_cities_dto: List[CityDTO] = []
@@ -116,7 +122,4 @@ async def fetch_cities(city: str):
         if not object_exists_in_list({"country", "state"}, city_dto, unique_cities_dto):
             unique_cities_dto.append(city_dto)
 
-    return [
-        convert_city_dto_city(city_dto, str(uuid.uuid4()))
-        for city_dto in unique_cities_dto
-    ][:8]
+    return [convert_city_dto_city(city_dto, str(uuid.uuid4())) for city_dto in unique_cities_dto][:8]

@@ -1,13 +1,15 @@
-from dotenv import load_dotenv
-from typing import Annotated, Literal
-import uvicorn
 from os import getenv
+from typing import Annotated, Literal
+
+import uvicorn
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv(override=True)
 
 from api_handler import fetch_current_weather, fetch_forecast, fetch_cities
+
 
 app = FastAPI()
 origin = getenv("ORIGIN")
@@ -49,9 +51,10 @@ async def forecast_weather(
 
     return data
 
+
 @app.get("/cities")
 async def cities(
-        city: Annotated[str, Query(description="Name of the city to search", min_length=1, max_length=30)],
+    city: Annotated[str, Query(description="Name of the city to search", min_length=1, max_length=30)],
 ):
     data = await fetch_cities(city=city)
 

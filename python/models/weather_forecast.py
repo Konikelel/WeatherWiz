@@ -1,13 +1,11 @@
 from dataclasses import dataclass
+from typing import List
 
-from .weather_data import WeatherData
-from .weather_desc import WeatherDesc
-from .wind import Wind
+from .location import Location
+from .weather_forecast_item import WeatherForecastItem
+
 
 @dataclass
 class WeatherForecast:
-    time: int
-    desc: WeatherDesc
-
-    data: WeatherData
-    wind: Wind
+    location: Location
+    data: List[WeatherForecastItem]
